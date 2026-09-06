@@ -1,0 +1,4 @@
+anomaly_detector/
+.env
+__pycache__/
+*.db

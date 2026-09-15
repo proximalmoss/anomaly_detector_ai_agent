@@ -1,0 +1,15 @@
+{
+  "1F8CuFukK8a1hKi5QkmgUZQqUBur46Zd1ocP4THP9a_I": {
+    "columns": ["Date", "Category", "Amount"],
+    "column_rules": {
+      "Date": {"type": "date", "format": "%d/%m/%Y"},
+      "Category": {
+        "type": "allowed_values",
+        "values": ["Jackets", "Pants", "Tops", "Baby-Tees", "Dresses",
+                   "Denims", "T-shirts", "Makeup", "Jewellery",
+                   "Skincare", "Bags", "Heels", "Shoes", "Sneakers"]
+      },
+      "Amount": {"type": "range", "min": 0, "max": 10000}
+    }
+  }
+}

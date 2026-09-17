@@ -36,9 +36,6 @@ def handle_edit(payload: dict):
 
         if z_issue:
             issues.append(f"{column_name}: {z_issue}")
-        iqr_issue=check_iqr(value, stats)
-        if iqr_issue:
-            issues.append(f"{column_name}: {iqr_issue}")
 
         update_column_stats(sheet_id, column_name, value)
 

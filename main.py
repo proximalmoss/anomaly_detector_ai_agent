@@ -3,11 +3,13 @@ import json
 from tools import run_rule_checks
 from stats import check_zscore, check_iqr
 from db import init_db, get_column_stats, update_column_stats
+from agent import get_alert_message
 
 app=FastAPI()
 
 with open("sheets_config.json") as f:
     SHEETS_CONFIG=json.load(f)
+init_db()
 
 @app.post("/webhook/edit")
 def handle_edit(payload: dict):
@@ -43,6 +45,11 @@ def handle_edit(payload: dict):
         print(f"Anomalies found in row {row_dict}:")
         for issue in issues:
             print("   -", issue)
+
+        alert_message=get_alert_message(row_dict, issues)
+        print("\nGenerated alert message")
+        print(alert_message)
+        print("end\n")
     else:
         print(f"Row OK: {row_dict}")
 

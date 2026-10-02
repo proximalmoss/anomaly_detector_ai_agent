@@ -1,6 +1,7 @@
 {
   "1F8CuFukK8a1hKi5QkmgUZQqUBur46Zd1ocP4THP9a_I": {
     "columns": ["Date", "Category", "Amount"],
+    "alert_email": "hananhidayathulla3@gmail.com",
     "column_rules": {
       "Date": {"type": "date", "format": "%d/%m/%Y"},
       "Category": {

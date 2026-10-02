@@ -4,6 +4,7 @@ from tools import run_rule_checks
 from stats import check_zscore, check_iqr
 from db import init_db, get_column_stats, update_column_stats
 from agent import get_alert_message
+from email_sender import send_alert_email
 
 app=FastAPI()
 
@@ -49,8 +50,15 @@ def handle_edit(payload: dict):
         alert_message=get_alert_message(row_dict, issues)
         print("\nGenerated alert message")
         print(alert_message)
-        print("end\n")
+
+        alert_email=sheet_config.get("alert_email")
+        if alert_email:
+            send_alert_email(
+                to_address=alert_email,
+                subject="Anomaly detected in your spreadsheet",
+                body=alert_message
+            )
     else:
-        print(f"Row OK: {row_dict}")
+        print("No alert_email configured for this sheet - skipping send")
 
     return {"status": "received", "checked": True, "issues": issues}
